@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\controllers\adminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +19,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function () {
-    return view('customer.index');
+
+    return view('welcome');
 });
+
+Route::resource('/admin', adminDashboardController::class);
+
+
