@@ -72,9 +72,9 @@
                         <a class="nav-link" href="{{ url('/') }}">Movie</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Booking</a>
-                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/customer.booking') }}">Booking</a>
+                    </li> -->
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">History</a>
