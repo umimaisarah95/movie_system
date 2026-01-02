@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('user_types', function (Blueprint $table) {
             $table->id();
-            $table->string('type_name');
+            $table->string('username');
+            $table->string('password');
+            $table->enum('userType', ['Admin', 'Customer']);
 
             $table->timestamps();
         });
