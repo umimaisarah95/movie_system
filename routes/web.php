@@ -29,6 +29,12 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('auth.register');
 });
+Route::get('/history', function () {
+    return view('customer.history');
+});
+Route::get('/profile', function () {
+    return view('customer.profile');
+});
 
 Route::resource('/admin', adminDashboardController::class);
 
