@@ -25,7 +25,7 @@ class adminDashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.movie_create');
     }
 
     /**
@@ -36,7 +36,7 @@ class adminDashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

@@ -2,74 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="Admin Dashboard" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        .sidebar {
-            height: 100vh;
-            background-color: #343a40;
-            color: white;
-            position: fixed;
-            width: 250px;
-            padding-top: 20px;
-        }
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px 20px;
-            border-radius: 4px;
-        }
-        .sidebar a:hover {
-            background-color: #495057;
-        }
-        .content {
-            margin-left: 260px;
-            padding: 20px;
-        }
-    </style>
+    <meta name="admin_Dashboard" content="width=device-width, initial-scale=1.0">
+
+    <title>@yield('title', 'Admin Dashboard')</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
-    <div class="sidebar">
-        <h4 class="text-center">Admin Dashboard</h4>
-    </div>
 
-    <div class="content">
-        <h2 class="text-center">Admin Dashboard</h2>
+    <!-- TOP NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{ url('/') }}">
+                {{ config('Movie System', 'Admin Dashboard') }}
+            </a>
 
-        <div class="row mt-4">
-            <!-- Manage Movies Section -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Manage Movies</h5>
-                        <p class="card-text">Add , edit and remove movies</p>
-                        <a href="{{url('managemovie')}}" class="btn btn-primary">Go to Movies</a>
-                    </div>
-                </div>
-            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#custNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-           
+            <div class="collapse navbar-collapse" id="custNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-            <!-- Manage Bookings Section -->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Manage Bookings</h5>
-                        <p class="card-text">View and manage customer bookings.</p>
-                        <a href="{{url('managebooking')}}" class="btn btn-primary">Go to Bookings</a>
-                    </div>
-                </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/') }}">Movie List</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Customer Booking</a>
+                    </li>
+
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="#">My Account</a>
+                                </li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button class="dropdown-item text-danger">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                   
+                    @endauth
+
+                </ul>
             </div>
         </div>
-    </div>
-<br>
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; 2025 Movie Booking System. All Rights Reserved.</p>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="py-4">
+        @yield('content')
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white mt-5">
+        <div class="container py-4">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <h5 class="fw-bold">{{ config('Movie System') }}</h5>
+                    <p class="mb-0">Customer-friendly platform built with Laravel.</p>
+                </div>
+
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">&copy; {{ date('Y') }} All rights reserved.</p>
+                </div>
+
+            </div>
+        </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Optional page-specific JS -->
+    @stack('scripts')
 
 </body>
 </html>
