@@ -17,7 +17,7 @@
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold">Now Showing</h3>
-        <a href="#" class="btn btn-outline-dark btn-sm">View All</a>
+        <!-- <a href="#" class="btn btn-outline-dark btn-sm">View All</a> -->
     </div>
 
     <div class="row g-4">
@@ -39,6 +39,9 @@
                 {{ $hours > 0 ? $hours . 'h ' : '' }}
                 {{ $minutes }}m
                 </small>
+                <a href="{{ route('customer.details', $movie->movie_id) }}" class="btn btn-outline-primary btn-sm w-100">
+                    View Details
+                </a>
             </div>
         </div>
     </div>

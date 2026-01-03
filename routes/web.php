@@ -55,6 +55,9 @@ Route::get('/profile', function () {
 Route::get('/booking', function () {
     return view('customer.booking');
 });
+Route::get('/movies/{id}', [MovieController::class, 'show'])
+    ->name('customer.details');
+
 
 
     

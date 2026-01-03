@@ -15,4 +15,14 @@ class movieController extends Controller
         return view('customer.index', compact('movies'));
     }   
 
+    public function show($id)
+    {
+        // Fetch movie by ID
+        $movie = Movie::findOrFail($id);
+
+        // Return details page
+        return view('customer.details', compact('movie'));
+    }
+
+
 }
