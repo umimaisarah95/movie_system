@@ -28,14 +28,21 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //CUSTOMER ROUTES
 
-Route::get('/', function () {
+// Route::get('/', function () {
 
-    return view('customer.index');
-});
+//     return view('customer.index');
+// });
 
 // Route::get('/login', function () {
 //     return view('auth.login');
 // });
+// Route::get('/customer', function () {
+//     return view('customer.index');
+// })->name('customer.index');
+
+Route::get('/customer', [movieController::class, 'home'])
+    ->name('customer.index');
+
 Route::get('/register', function () {
     return view('auth.register');
 });
