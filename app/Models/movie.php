@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class movie extends Model
 {
+    use HasFactory;
+    protected $primaryKey = 'movie_id';
     protected $fillable = [
         'image_path',
         'movie_title',

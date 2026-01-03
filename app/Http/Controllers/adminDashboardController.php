@@ -35,9 +35,9 @@ class adminDashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        
+{
     }
+
 
     /**
      * Display the specified resource.

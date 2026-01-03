@@ -23,7 +23,15 @@ Route::get('/', function () {
     return view('customer.index');
 });
 
+Route::get('/admin', function () {
 
-Route::resource('/admin', adminDashboardController::class);
+    return view('admin.index');
+});
+
+Route::get('/admin/create', function () {
+
+    return view('admin.movie_create');
+});
 
 
+    

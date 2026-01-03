@@ -2,18 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="admin_Dashboard" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>@yield('title', 'Admin Dashboard')</title>
+    <title>@yield('title', 'Admin')</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .cust-navbar {
+            background-color: #5D4037;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #ffcc80 !important;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(
+                rgba(0,0,0,.6),
+                rgba(0,0,0,.6)
+            ), url('https://images.unsplash.com/photo-1581905764498-8dcb9c0f7b33');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 120px 0;
+        }
+
+        /* Movie card hover */
+        .movie-card {
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.2);
+        }
+    </style>
+
 </head>
 <body>
-
-    <!-- TOP NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+    
+<!-- TOP NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light border-bottom shadow-sm cust-navbar">
         <div class="container">
             <a class="navbar-brand fw-bold" href="{{ url('/') }}">
                 {{ config('Movie System', 'Admin Dashboard') }}
@@ -27,11 +69,15 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}">Movie List</a>
+                        <a class="nav-link" href="{{ url('/') }}">Manage Movie</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Customer Booking</a>
+                        <a class="nav-link" href="#">Manage Booking</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
                     </li>
 
                     @auth
@@ -60,7 +106,7 @@
     </nav>
 
     <!-- MAIN CONTENT -->
-    <main class="py-4">
+    <main>
         @yield('content')
     </main>
 
@@ -89,4 +135,5 @@
     @stack('scripts')
 
 </body>
+
 </html>
