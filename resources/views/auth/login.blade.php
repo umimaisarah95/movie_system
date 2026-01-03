@@ -45,28 +45,31 @@
 
                     <h4 class="fw-bold text-center mb-4">Login</h4>
 
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <!-- USER TYPE -->
                         <div class="mb-3">
                             <label class="form-label">Role</label>
                             <select class="form-select" name="user_type" required>
-                                <option value="customer" selected>Customer</option>
-                                <option value="admin">Admin</option>
+                                <option value="customer" name="customer" selected>Customer</option>
+                                <option value="admin" name="admin">Admin</option>
                             </select>
                         </div>
 
                         <!-- EMAIL -->
                         <div class="mb-3">
-                            <label class="form-label">Username</label>
-                            <input type="username" class="form-control" placeholder="Enter username" required>
+                            <label class="form-label" >email</label>
+                            <input type="email" name="email" class="form-control" placeholder="Enter email" required>
                         </div>
 
                         <!-- PASSWORD -->
                         <div class="mb-3">
-                            <label class="form-label">Password</label>
-                            <input type="password" class="form-control" placeholder="Enter password" required>
+                            <label class="form-label" >Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+                            <!-- <span class="input-group-text" style="cursor: pointer;" onclick="togglePassword()"> -->
+                                <i class="bi bi-eye" id="eyeIcon"></i>
+                            <!-- </span> -->
                         </div>
 
                         <!-- REMEMBER -->
@@ -99,6 +102,24 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function togglePassword() {
+        const password = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        if (password.type === 'password') {
+            password.type = 'text';
+            eyeIcon.classList.remove('bi-eye');
+            eyeIcon.classList.add('bi-eye-slash');
+        } else {
+            password.type = 'password';
+            eyeIcon.classList.remove('bi-eye-slash');
+            eyeIcon.classList.add('bi-eye');
+        }
+    }
+</script>
+
 
 </body>
 </html>
