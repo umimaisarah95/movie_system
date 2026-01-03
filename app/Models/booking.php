@@ -14,7 +14,8 @@ class booking extends Model
         'movie_id',
         'seat_num',
         'booking_date',
-        'booking_time'
+        'booking_time',
+        'total_price',
     ];
 
       public function user()

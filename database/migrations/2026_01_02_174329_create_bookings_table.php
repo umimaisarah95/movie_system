@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('seat_num');
             $table->date('booking_date');
             $table->time('booking_time');
+            $table->integer('total_price');
             $table->timestamps();
         });
     }

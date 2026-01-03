@@ -24,19 +24,19 @@ class BookingController extends Controller
     {
         $request->validate([
             'movie_id' => 'required|exists:movies,id',
-            'date'     => 'required|date',
-            'time'     => 'required',
-            'seats'    => 'required',
-            'total'    => 'required|numeric',
+            'booking_date'     => 'required|date',
+            'booking_time'     => 'required',
+            'seat_num'    => 'required',
+            'total_price'    => 'required|numeric',
         ]);
 
         Booking::create([
             'user_id' => Auth::id(),
             'movie_id' => $request->movie_id,
-            'date'     => $request->date,
-            'time'     => $request->time,
-            'seats'    => $request->seats,
-            'total'    => $request->total,
+            'booking_date'     => $request->date,
+            'booking_time'     => $request->time,
+            'seat_num'    => $request->seats,
+            'total_price'    => $request->total,
             'status'   => 'PAID',
         ]);
 
