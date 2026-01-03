@@ -23,9 +23,6 @@
     <div class="row g-4">
         @foreach ($movies as $movie)
 
-        @php
-    $duration = \Carbon\Carbon::parse($movie->duration);
-@endphp
 
     <div class="col-md-4 col-lg-3">
         <div class="card">
@@ -33,7 +30,14 @@
             <div class="card-body">
                 <h4>{{ $movie->movie_title }}</h4>
                 <small class="text-muted">
-                • {{ $movie->duration }}m
+                @php
+                    $hours = intdiv($movie->duration, 60);
+                    $minutes = $movie->duration % 60;
+                @endphp
+
+                Duration:
+                {{ $hours > 0 ? $hours . 'h ' : '' }}
+                {{ $minutes }}m
                 </small>
             </div>
         </div>
