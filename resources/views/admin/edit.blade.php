@@ -7,9 +7,9 @@
 <div class="container mt-4">
     <h3 class="mb-4">Edit Movie</h3>
 
-    <form action="#" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('movie.update', $movie->movie_id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT') {{-- for update later --}}
+        @method('PUT')
 
         <div class="mb-3">
             <label class="form-label fw-semibold">Movie Image</label>
@@ -22,7 +22,7 @@
             <input type="text"
                    class="form-control"
                    name="movie_title"
-                   value="Avengers: Endgame"
+                   value="{{ old('movie_title', $movie->movie_title) }}"
                    required>
         </div>
 
@@ -31,7 +31,7 @@
             <input type="text"
                    class="form-control"
                    name="director"
-                   value="Anthony Russo"
+                   value="{{ old('director', $movie->director) }}"
                    required>
         </div>
 
@@ -40,7 +40,7 @@
             <input type="text"
                    class="form-control"
                    name="cast"
-                   value="Robert Downey Jr., Chris Evans"
+                   value="{{ old('cast', $movie->cast) }}"
                    required>
         </div>
 
@@ -49,15 +49,16 @@
             <textarea class="form-control"
                       name="description"
                       rows="4"
-                      required>Superheroes fight to save the universe.</textarea>
+                      name="{{old ('description', $movie->description) }}"
+                        required>{{ $movie->description }}</textarea>
         </div>
 
         <div class="mb-3">
             <label class="form-label fw-semibold">Duration</label>
-            <input type="time"
+            <input type="integer"
                    class="form-control"
                    name="duration"
-                   value="03:01"
+                   value="{{ old('duration', $movie->duration) }}"
                    required>
         </div>
 
@@ -66,7 +67,7 @@
             <input type="date"
                    class="form-control"
                    name="promotion_start_date"
-                   value="2026-01-01"
+                   value="{{ old('promotion_start_date', $movie->promotion_start_date) }}"
                    required>
         </div>
 
@@ -75,7 +76,7 @@
             <input type="date"
                    class="form-control"
                    name="promotion_end_date"
-                   value="2026-02-01"
+                   value="{{ old('promotion_end_date', $movie->promotion_end_date) }}"
                    required>
         </div>
 
@@ -83,7 +84,7 @@
             Update Movie
         </button>
 
-        <a href="#" class="btn btn-secondary ms-2">
+        <a href="{{ route('admin.index') }}" class="btn btn-secondary ms-2">
             Cancel
         </a>
     </form>

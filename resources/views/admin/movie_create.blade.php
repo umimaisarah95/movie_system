@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-<form action="#" method="POST" enctype="multipart/form-data">
+<form action="{{ route('movie.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <br>
 
@@ -33,7 +33,7 @@
 
     <div class="mb-3">
         <label for="duration" class="form-label, fw-semibold">Duration</label>
-        <input type="time" class="form-control" id="duration" name="duration" required>
+        <input type="integer" class="form-control" id="duration" name="duration" required>
     </div>
 
     <div class="mb-3">

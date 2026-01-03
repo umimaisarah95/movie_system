@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('movie_id');
             $table->string('seat_num');
-            $table->string('booking_date');
-            $table->string('booking_time');
+            $table->date('booking_date');
+            $table->time('booking_time');
             $table->timestamps();
         });
     }

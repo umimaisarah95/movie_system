@@ -10,14 +10,20 @@ Refer coding studentdb.
 <div class="container mt-4">
 
     <!-- Success alert (static for design) -->
-    <div class="alert alert-success">Booking loaded successfully!</div>
-
+     @if (session('success'))
+    <div class="alert alert-success" role="alert">  
+    <div>{{ session('success') }}</div>
+    </div>
+    @endif
+    <h2 class="mb-4">Booking List</h2>
     <table class="table table-bordered table-striped table-secondary">
         <thead class="table-dark">
             <tr>
                 <th>Booking ID</th>
                 <th>User ID</th>
+                <th>Customer Name</th>
                 <th>Movie ID</th>
+                <th>Movie Title</th>
                 <th>Seat Number</th>
                 <th>Booking Date</th>
                 <th>Booking Time</th>
@@ -26,53 +32,29 @@ Refer coding studentdb.
         </thead>
 
         <tbody>
-            <!-- Dummy booking 1 -->
+            @foreach($bookings as $booking)
             <tr>
-                <td>1</td>
-                <td>U001</td>
-                <td>M101</td>
-                <td>A12</td>
-                <td>2026-01-05</td>
-                <td>20:30</td>
+                <td>{{ $booking->booking_id }}</td>
+                <td>{{ $booking->user_id }}</td>
+                <td>{{ $booking->user->name ?? 'N/A' }}</td> <!-- Assuming user has a 'name' field -->
+                <td>{{ $booking->movie_id }}</td>
+                <td>{{ $booking->movie->movie_title ?? 'N/A' }}</td>
+                <td>{{ $booking->seat_num }}</td>
+                <td>{{ $booking->booking_date }}</td>
+                <td>{{ $booking->booking_time }}</td>
                 <td>
                     <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                    <button class="btn btn-danger btn-sm" onclick="alert('Delete booking?')">
-                        Delete
-                    </button>
+                    <form action="#" method="POST" style="display:inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm"
+                                onclick="return confirm('Delete booking?')">
+                                Delete
+                        </button>
+                    </form>
                 </td>
             </tr>
-
-            <!-- Dummy booking 2 -->
-            <tr>
-                <td>2</td>
-                <td>U002</td>
-                <td>M102</td>
-                <td>B08</td>
-                <td>2026-01-07</td>
-                <td>18:00</td>
-                <td>
-                    <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                    <button class="btn btn-danger btn-sm" onclick="alert('Delete booking?')">
-                        Delete
-                    </button>
-                </td>
-            </tr>
-
-            <!-- Dummy booking 3 -->
-            <tr>
-                <td>3</td>
-                <td>U003</td>
-                <td>M103</td>
-                <td>C15</td>
-                <td>2026-01-10</td>
-                <td>21:45</td>
-                <td>
-                    <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                    <button class="btn btn-danger btn-sm" onclick="alert('Delete booking?')">
-                        Delete
-                    </button>
-                </td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

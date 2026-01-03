@@ -2,6 +2,8 @@
 @section('title', 'Movies')
 @section('content')
 
+
+
 <!-- HERO SECTION -->
 <section class="hero text-center">
     <div class="container">
@@ -19,20 +21,25 @@
     </div>
 
     <div class="row g-4">
-        @for ($i = 0; $i < 6; $i++)
-        <div class="col-md-4 col-lg-3">
-            <div class="card movie-card h-100">
-                <img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Movie">
-                <div class="card-body">
-                    <h6 class="card-title fw-bold">Movie Title</h6>
-                    <small class="text-muted">Action • 2h 15m</small>
-                </div>
-                <div class="card-footer bg-white border-0">
-                    <a href="#" class="btn btn-dark w-100">View Details</a>
-                </div>
+        @foreach ($movies as $movie)
+
+        @php
+    $duration = \Carbon\Carbon::parse($movie->duration);
+@endphp
+
+    <div class="col-md-4 col-lg-3">
+        <div class="card">
+            <img src="{{ asset('storage/' . $movie->image_path) }}" alt="{{ $movie->movie_title }}">
+            <div class="card-body">
+                <h4>{{ $movie->movie_title }}</h4>
+                <small class="text-muted">
+                • {{ $movie->duration }}m
+                </small>
             </div>
         </div>
-        @endfor
+    </div>
+@endforeach
+
     </div>
 </div>
 
