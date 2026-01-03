@@ -49,6 +49,7 @@
             transform: translateY(-8px);
             box-shadow: 0 10px 25px rgba(0,0,0,.2);
         }
+
     </style>
 
 </head>
@@ -72,16 +73,16 @@
                         <a class="nav-link" href="{{ url('/') }}">Movie</a>
                     </li>
 
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/customer.booking') }}">Booking</a>
+                    </li> -->
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Booking</a>
+                        <a class="nav-link" href="{{ url('/history') }}">History</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">History</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="{{ url('/profile') }}">Profile</a>
                     </li>
 
                     @auth

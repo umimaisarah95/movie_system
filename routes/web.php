@@ -23,9 +23,25 @@ Route::get('/', function () {
     return view('customer.index');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
+Route::get('/register', function () {
+    return view('auth.register');
+});
+Route::get('/history', function () {
+    return view('customer.history');
+});
+Route::get('/profile', function () {
+    return view('customer.profile');
+});
+//their code
+
+    
+//my code
 Route::get('/admin', function () {
 
-    return view('admin.index');
+return view('admin.index');
 });
 
 Route::get('/admin/create', function () {
