@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\controllers\adminDashboardController;
+use App\Http\controllers\movieController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 //CUSTOMER ROUTES
 
-Route::get('/', function () {
-
-    return view('customer.index');
-});
+Route::get('/', [movieController::class, 'home']);
 
 Route::get('/login', function () {
     return view('auth.login');
