@@ -4,6 +4,7 @@ use App\Http\controllers\adminDashboardController;
 use App\Http\controllers\movieController;
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\AuthController;
+use App\Http\controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,9 +53,15 @@ Route::get('/history', function () {
 Route::get('/profile', function () {
     return view('customer.profile');
 });
-Route::get('/booking', function () {
-    return view('customer.booking');
-});
+// Route::get('/booking', function () {
+//     return view('customer.booking');
+// });
+Route::get('/customer/booking', [BookingController::class, 'create'])
+    ->name('customer.booking');
+
+Route::post('/booking', [BookingController::class, 'store'])
+    ->name('booking.store');
+
 Route::get('/movies/{id}', [MovieController::class, 'show'])
     ->name('customer.details');
 

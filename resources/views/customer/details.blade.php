@@ -64,7 +64,7 @@
 
             <!-- ACTION BUTTONS -->
             <div class="d-flex gap-3">
-                <a href="{{ url('/booking') }}" class="btn btn-warning px-4">
+                <a href="{{ url('/customer/booking') }}" class="btn btn-warning px-4">
                     Book Now
                 </a>
 

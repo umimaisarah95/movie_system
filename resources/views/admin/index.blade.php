@@ -1,9 +1,3 @@
-<!--
-
-LATER REFER THIS CODE FOR BACK END LOGIC!
-Refer coding studentdb. 
--->
-
 
 @extends('layouts.admin-layout')
 
