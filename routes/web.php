@@ -37,6 +37,10 @@ Route::get('/history', function () {
 Route::get('/profile', function () {
     return view('customer.profile');
 });
+Route::get('/booking', function () {
+    return view('customer.booking');
+});
+
 
     
 //ADMIN ROUTES

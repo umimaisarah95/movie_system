@@ -59,7 +59,7 @@
 
                 <!-- ACTION -->
                 <td class="text-end" style="width: 150px;">
-                    <a href="#" class="btn btn-outline-dark btn-sm px-4">
+                    <a href="{{ url('/booking') }}" class="btn  px-4">
                         Book
                     </a>
                 </td>

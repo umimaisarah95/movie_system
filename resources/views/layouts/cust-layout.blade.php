@@ -49,6 +49,10 @@
             transform: translateY(-8px);
             box-shadow: 0 10px 25px rgba(0,0,0,.2);
         }
+        .btn {
+            background-color: #5D4037;
+            color: #fff;
+        }
 
     </style>
 
