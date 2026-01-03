@@ -16,7 +16,7 @@ Refer coding studentdb.
 
     <div class="d-flex justify-content-between mb-3">
         <h2>Movie List</h2>
-        <a href="#" class="btn btn-primary">Add Movie</a>
+        <a href="{{ route('admin.movie_create') }}" class="btn btn-primary">Add Movie</a>
     </div>
 
     <table class="table table-bordered table-striped table-secondary">

@@ -69,15 +69,15 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}">Manage Movie</a>
+                        <a class="nav-link" href="{{ route('admin.index') }}">Manage Movie</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manage Booking</a>
+                        <a class="nav-link" href="{{ route('admin.booking') }}">Manage Booking</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="{{ route('admin.profile') }}">Profile</a>
                     </li>
 
                     @auth

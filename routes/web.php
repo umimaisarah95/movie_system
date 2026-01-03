@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+//CUSTOMER ROUTES
+
 Route::get('/', function () {
 
     return view('customer.index');
@@ -35,19 +37,31 @@ Route::get('/history', function () {
 Route::get('/profile', function () {
     return view('customer.profile');
 });
-//their code
 
     
-//my code
+//ADMIN ROUTES
 Route::get('/admin', function () {
 
 return view('admin.index');
-});
+})->name('admin.index');
 
-Route::get('/admin/create', function () {
+Route::get('/addmovie', function () {
 
     return view('admin.movie_create');
-});
+})->name('admin.movie_create');
 
+Route::get('/admin/profile', function () {
 
+    return view('admin.adminProfile');
+})->name('admin.profile');
+
+Route::get('/admin/booking', function () {
+
+    return view('admin.viewBooking');
+})->name('admin.booking');
+
+Route::get('/admin/edit/{movie}', function ($movie) {
+
+    return view('admin.edit', compact('movie'));
+})->name('admin.edit');
     
