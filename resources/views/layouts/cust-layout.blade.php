@@ -25,7 +25,7 @@
         }
 
         .nav-link:hover {
-            color: #ffcc80 !important;
+            color: #ac9993ff !important;
         }
 
         /* Hero */
@@ -53,6 +53,51 @@
             background-color: #5D4037;
             color: #fff;
         }
+        .btn:hover {
+            background-color: #ac9993ff;
+            color: #fff;
+        }
+
+        .seat-hall {
+            justify-content: center;
+        }
+
+        .seat-row {
+            display: grid;
+            grid-template-columns: repeat(10, 42px);
+            gap: 8px;
+        }
+
+        .seat-btn {
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        .seat-btn.btn-warning {
+            background-color: #ac9993ff;
+            border-color: #ac9993ff;
+            color: #000;
+        }
+
+        .screen-label {
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            padding: 8px 0;
+            margin-bottom: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            background: linear-gradient(to right, transparent, #444, transparent);
+            color: #fff;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+
 
     </style>
 

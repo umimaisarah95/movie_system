@@ -66,15 +66,22 @@
                         <!-- SEATS -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Select Seats</label>
-                            <div class="d-flex flex-wrap gap-2">
-                                @for($i=1; $i<=10; $i++)
-                                    <button 
-                                        type="button"
-                                        class="btn btn-outline-dark btn-sm seat-btn"
-                                        data-seat="A{{ $i }}">
-                                        A{{ $i }}
-                                    </button>
-                                @endfor
+                            <div class="d-flex flex-wrap gap-2 seat-hall">
+                                <div class="screen-label">
+                                    SCREEN
+                                </div>
+                                @foreach (['A', 'B', 'C', 'D', 'E'] as $row)
+                                    <div class="d-flex flex-wrap gap-2 mb-2">
+                                        @for ($i = 1; $i <= 10; $i++)
+                                            <button 
+                                                type="button"
+                                                class="btn btn-outline-dark btn-sm seat-btn"
+                                                data-seat="{{ $row }}{{ $i }}">
+                                                {{ $row }}{{ $i }}
+                                            </button>
+                                        @endfor
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
 
@@ -89,7 +96,7 @@
                             </h6>
                         </div>
 
-                        <button type="submit" class="btn btn-warning w-100 fw-bold">
+                        <button type="submit" class="btn w-100 fw-bold">
                             Confirm Booking
                         </button>
 
