@@ -40,28 +40,30 @@ Route::get('/profile', function () {
 
     
 //ADMIN ROUTES
-Route::get('/admin', function () {
+Route::get('/admin', [adminDashboardController::class, 'index'])->name('admin.index');
 
-return view('admin.index');
-})->name('admin.index');
+Route::get('/addmovie', [adminDashboardController:: class, 'create'])->name('admin.movie_create'); 
 
-Route::get('/addmovie', function () {
+Route::post('/movie', [adminDashboardController::class, 'store'])
+        ->name('movie.store');
 
-    return view('admin.movie_create');
-})->name('admin.movie_create');
+Route::get('/movies/edit/{movie}', [adminDashboardController::class, 'edit'])
+        ->name('movie.edit');
+
+Route::put('/movies/{movie}', [adminDashboardController::class, 'update'])
+        ->name('movie.update');
+
+Route::delete('/movies/{movie}', [adminDashboardController::class, 'destroy'])
+        ->name('movie.destroy');
 
 Route::get('/admin/profile', function () {
+    
 
     return view('admin.adminProfile');
 })->name('admin.profile');
 
-Route::get('/admin/booking', function () {
+Route::get('/admin/booking', [adminDashboardController::class, 'bookings'])
+     ->name('admin.booking');
 
-    return view('admin.viewBooking');
-})->name('admin.booking');
 
-Route::get('/admin/edit/{movie}', function ($movie) {
-
-    return view('admin.edit', compact('movie'));
-})->name('admin.edit');
     

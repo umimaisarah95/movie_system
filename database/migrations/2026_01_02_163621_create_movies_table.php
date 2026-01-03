@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('director');
             $table->string('cast');
             $table->text('description');
-            $table->time('duration');
+            $table->integer('duration');
             $table->date('promotion_start_date');
             $table->date('promotion_end_date');
             $table->timestamps();

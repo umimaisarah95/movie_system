@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class movie extends Model
 {
     use HasFactory;
+
+    public function getRouteKeyName()
+{
+    return 'movie_id';
+}
+
     protected $primaryKey = 'movie_id';
     protected $fillable = [
         'image_path',
@@ -20,3 +26,5 @@ class movie extends Model
         'promotion_end_date',
     ];
 }
+
+

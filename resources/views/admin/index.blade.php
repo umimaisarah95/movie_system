@@ -11,8 +11,11 @@ Refer coding studentdb.
 
 <div class="container mt-4">
 
-    <!-- Success alert (static for design) -->
-    <div class="alert alert-success">Movie added successfully!</div>
+    @if (session('success'))
+    <div class="alert alert-success" role="alert">  
+    <div>{{ session('success') }}</div>
+</div>
+    @endif
 
     <div class="d-flex justify-content-between mb-3">
         <h2>Movie List</h2>
@@ -34,44 +37,30 @@ Refer coding studentdb.
                 <th width="180">Action</th>
             </tr>
         </thead>
-
         <tbody>
-            <!-- Dummy movie 1 -->
+            @foreach ($movies as $movie)
             <tr>
-                <td>1</td>
-                <td><img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Movie"></td>
-                <td>Avengers: Endgame</td>
-                <td>Anthony Russo</td>
-                <td>Robert Downey Jr., Chris Evans</td>
-                <td>Superheroes fight to save the universe.</td>
-                <td>03:01:00</td>
-                <td>2026-01-01</td>
-                <td>2026-02-01</td>
+                <td>{{ $movie->movie_id }}</td>
+                <td><img src="{{ Storage::url($movie->image_path) }}" class="card-img-top" alt="Movie" style="width: 100px; height: auto;"></td>
+                <td>{{ $movie->movie_title }}</td>
+                <td>{{ $movie->director }}</td>
+                <td>{{ $movie->cast }}</td>
+                <td>{{ $movie->description }}</td>
+                <td>{{ $movie->duration }} mins</td>
+                <td>{{ $movie->promotion_start_date }}</td>
+                <td>{{ $movie->promotion_end_date }}</td>
                 <td>
-                    <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                    <button class="btn btn-danger btn-sm" onclick="alert('Delete movie?')">Delete</button>
+                    <a href="{{ route('movie.edit', $movie) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="{{ route('movie.destroy', $movie) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
                 </td>
             </tr>
-
-            <!-- Dummy movie 2 -->
-            <tr>
-                <td>2</td>
-                <td><img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Movie"></td>
-                <td>Spider-Man: No Way Home</td>
-                <td>Jon Watts</td>
-                <td>Tom Holland, Zendaya</td>
-                <td>Spider-Man faces multiverse villains.</td>
-                <td>02:28:00</td>
-                <td>2026-01-10</td>
-                <td>2026-02-15</td>
-                <td>
-                    <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                    <button class="btn btn-danger btn-sm" onclick="alert('Delete movie?')">Delete</button>
-                </td>
-            </tr>
-
-            <!-- Add more dummy rows as needed -->
+            @endforeach
         </tbody>
+
     </table>
 </div>
 
