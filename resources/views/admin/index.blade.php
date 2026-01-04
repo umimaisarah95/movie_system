@@ -31,7 +31,14 @@
                 </div>
 
                 <div class="movie-meta mb-2">
-                    Duration: {{ $movie->duration }} mins
+                    @php
+                        $hours = intdiv($movie->duration, 60);
+                        $minutes = $movie->duration % 60;
+                    @endphp
+
+                    Duration:
+                    {{ $hours > 0 ? $hours . 'h ' : '' }}
+                    {{ $minutes }}m
                 </div>
 
                 <!-- <div class="movie-meta">

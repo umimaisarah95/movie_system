@@ -50,7 +50,14 @@
 
                         <div class="col-md-6 mb-2">
                             <strong>Duration:</strong><br>
-                            {{ $movie->duration }} mins
+                            @php
+                                $hours = intdiv($movie->duration, 60);
+                                $minutes = $movie->duration % 60;
+                            @endphp
+
+                            Duration:
+                            {{ $hours > 0 ? $hours . 'h ' : '' }}
+                            {{ $minutes }}m
                         </div>
                     </div>
 
@@ -96,7 +103,7 @@
             @method('DELETE')
             <button 
                 type="submit" 
-                class="btn btn-danger"
+                class="btn btn-danger btn-delete"
                 onclick="return confirm('Are you sure you want to delete this movie?')">
                 Delete Movie
             </button>
