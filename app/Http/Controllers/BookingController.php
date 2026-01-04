@@ -21,7 +21,13 @@ class BookingController extends Controller
     {
         $movie = movie::findOrFail($id);
 
-        return view('customer.booking', compact('movie'));
+        $showtimes = $movie->showtimes()
+            ->orderBy('show_date')
+            ->orderBy('show_time')
+            ->get();
+
+
+        return view('customer.booking', compact('movie', 'showtimes'));
     }
 
 

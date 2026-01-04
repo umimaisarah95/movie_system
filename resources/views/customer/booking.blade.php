@@ -49,18 +49,27 @@
                         <!-- DATE -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Date</label>
-                            <input type="date" name="date" class="form-control" required>
+                            <input type="date" name="date" class="form-control"required min="{{ $movie->promotion_start_date }}"
+                                max="{{ $movie->promotion_end_date }}" >
+
                         </div>
 
                         <!-- TIME -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Time</label>
                             <select name="time" class="form-select" required>
-                                <option value="10:00 AM">10:00 AM</option>
-                                <option value="1:30 PM">1:30 PM</option>
-                                <option value="3:25 PM">3:25 PM</option>
-                                <option value="8:00 PM">8:00 PM</option>
+                                <option value="">-- Select Time --</option>
+
+                                @foreach ($showtimes as $showtime)
+                                    <option 
+                                        value="{{ $showtime->show_time }}"
+                                        data-date="{{ $showtime->show_date }}"
+                                    >
+                                        {{ \Carbon\Carbon::parse($showtime->show_time)->format('h:i A') }}
+                                    </option>
+                                @endforeach
                             </select>
+
                         </div>
 
                         <!-- SEATS -->
