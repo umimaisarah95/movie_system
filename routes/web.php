@@ -94,5 +94,8 @@ Route::get('/admin/profile', function () {
 Route::get('/admin/booking', [adminDashboardController::class, 'bookings'])
      ->name('admin.booking');
 
+Route::get('/admin/movies/{id}/details', [MovieController::class, 'showDetails'])
+    ->name('admin.movie.details');
+
 
     

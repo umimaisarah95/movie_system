@@ -1,61 +1,71 @@
-
 @extends('layouts.admin-layout')
 
-@section('content') 
+@section('content')
 
 <div class="container mt-4">
 
     @if (session('success'))
-    <div class="alert alert-success" role="alert">  
-    <div>{{ session('success') }}</div>
-</div>
+        <div class="alert alert-success shadow-sm">
+            {{ session('success') }}
+        </div>
     @endif
 
-    <div class="d-flex justify-content-between mb-3">
-        <h2>Movie List</h2>
-        <a href="{{ route('admin.movie_create') }}" class="btn btn-primary">Add Movie</a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Movie Management</h2>
+        <a href="{{ route('admin.movie_create') }}" class="btn">
+            Add Movie
+        </a>
     </div>
 
-    <table class="table table-bordered table-striped table-secondary">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Movie Image</th>
-                <th>Movie Title</th>
-                <th>Director</th>
-                <th>Cast</th>
-                <th>Description</th>
-                <th>Duration</th>
-                <th>Promotion Start Date</th>
-                <th>Promotion End Date</th>
-                <th width="180">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($movies as $movie)
-            <tr>
-                <td>{{ $movie->movie_id }}</td>
-                <td><img src="{{ Storage::url($movie->image_path) }}" class="card-img-top" alt="Movie" style="width: 100px; height: auto;"></td>
-                <td>{{ $movie->movie_title }}</td>
-                <td>{{ $movie->director }}</td>
-                <td>{{ $movie->cast }}</td>
-                <td>{{ $movie->description }}</td>
-                <td>{{ $movie->duration }} mins</td>
-                <td>{{ $movie->promotion_start_date }}</td>
-                <td>{{ $movie->promotion_end_date }}</td>
-                <td>
-                    <a href="{{ route('movie.edit', $movie) }}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route('movie.destroy', $movie) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
+    <div class="movie-grid">
 
-    </table>
+        @foreach ($movies as $movie)
+        <div class="movie-card-item">
+
+            <img src="{{ Storage::url($movie->image_path) }}" alt="Movie Poster">
+
+            <div class="movie-card-body">
+
+                <div class="movie-title">
+                    {{ $movie->movie_title }}
+                </div>
+
+                <div class="movie-meta mb-2">
+                    Duration: {{ $movie->duration }} mins
+                </div>
+
+                <!-- <div class="movie-meta">
+                    {{ $movie->promotion_start_date }} → {{ $movie->promotion_end_date }}
+                </div> -->
+
+                <div class="movie-actions mt-3">
+                    <!-- DETAILS -->
+                    <a href="{{ route('admin.movie.details', $movie->movie_id) }}" class="btn btn-sm">
+                        Details
+                    </a>
+
+                    <!-- EDIT -->
+                    <a href="{{ route('movie.edit', $movie) }}" class="btn btn-sm">
+                        Edit
+                    </a>
+                </div>
+
+                <form action="{{ route('movie.destroy', $movie) }}" method="POST" class="mt-2">
+                    @csrf
+                    @method('DELETE')
+                    <button 
+                        type="submit" 
+                        class="btn btn-sm btn-danger w-100 btn-delete"
+                        onclick="return confirm('Are you sure?')">
+                        Delete
+                    </button>
+                </form>
+
+            </div>
+        </div>
+        @endforeach
+
+    </div>
 </div>
 
 @endsection

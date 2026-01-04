@@ -22,6 +22,14 @@ class movieController extends Controller
 
         // Return details page
         return view('customer.details', compact('movie'));
+        // return view('admin.showdetails', compact('movie'));
+    }
+    
+    public function showDetails($id)
+    {
+        $movie = Movie::findOrFail($id);
+
+        return view('admin.showdetails', compact('movie'));
     }
 
 
