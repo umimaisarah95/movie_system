@@ -46,7 +46,7 @@
 
                 <!-- ACTIONS -->
                 <div class="d-flex justify-content-end gap-2">
-                    <a href="{{ route('admin.movie.details', $movie->movie_id) }}" class="btn">
+                    <a href="{{ route('admin.movie.details', $movie->movie_id) }}" class="btn btn-cancel">
                         Cancel
                     </a>
 
