@@ -5,6 +5,7 @@ use App\Http\controllers\movieController;
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\AuthController;
 use App\Http\controllers\BookingController;
+use App\Http\controllers\ShowtimesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,13 @@ Route::get('/admin/booking', [adminDashboardController::class, 'bookings'])
 
 Route::get('/admin/movies/{id}/details', [MovieController::class, 'showDetails'])
     ->name('admin.movie.details');
+
+Route::get('/admin/showtimes/create/{movie}', [ShowtimesController::class, 'create'])
+    ->name('admin.showtimes');
+
+// Route::post('/admin/showtimes', [ShowtimeController::class, 'store'])
+//     ->name('admin.showtimes.store');
+
 
 
     

@@ -9,11 +9,12 @@
         <h2 class="fw-bold">Movie Details</h2>
 
         <div>
-            <a href="{{ route('movie.edit', $movie) }}" class="btn btn-warning me-2">
-                Edit Movie
+
+            <a href="{{ route('admin.showtimes', $movie->movie_id) }}" class="btn me-2">
+                Add Showtime
             </a>
 
-            <a href="{{ route('admin.index') }}" class="btn btn-secondary">
+            <a href="{{ route('admin.index') }}" class="btn">
                 Back to Movie List
             </a>
         </div>
@@ -88,6 +89,7 @@
                                 Promo End: {{ $movie->promotion_end_date }}
                             </span>
                         </div>
+
                     </div>
 
                 </div>
@@ -97,7 +99,7 @@
     </div>
 
     <!-- DELETE BUTTON -->
-    <div class="mt-4 text-end">
+    <!-- <div class="mt-4 text-end">
         <form action="{{ route('movie.destroy', $movie) }}" method="POST">
             @csrf
             @method('DELETE')
@@ -108,7 +110,7 @@
                 Delete Movie
             </button>
         </form>
-    </div>
+    </div> -->
 
 </div>
 
