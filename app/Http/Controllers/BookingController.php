@@ -17,6 +17,14 @@ class BookingController extends Controller
         return view('customer.booking', compact('movie'));
     }
 
+    public function booking($id)
+    {
+        $movie = movie::findOrFail($id);
+
+        return view('customer.booking', compact('movie'));
+    }
+
+
     /**
      * Store booking data
      */

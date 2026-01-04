@@ -10,9 +10,9 @@ class movie extends Model
     use HasFactory;
 
     public function getRouteKeyName()
-{
-    return 'movie_id';
-}
+    {
+        return 'movie_id';
+    }
 
     protected $primaryKey = 'movie_id';
     protected $fillable = [
@@ -25,6 +25,12 @@ class movie extends Model
         'promotion_start_date',
         'promotion_end_date',
     ];
+
+    public function showtimes()
+    {
+        return $this->hasMany(Showtime::class);
+    }
+
 }
 
 

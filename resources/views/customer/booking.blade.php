@@ -15,7 +15,7 @@
                 <div class="card-body p-4 text-center">
                     
                     <img 
-                        src="#" 
+                        src="{{ asset('storage/' . $movie->image_path) }}" 
                         class="img-fluid rounded mb-3"
                         alt="{{ $movie->movie_title }}">
 

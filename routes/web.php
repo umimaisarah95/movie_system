@@ -56,8 +56,12 @@ Route::get('/profile', function () {
 // Route::get('/booking', function () {
 //     return view('customer.booking');
 // });
-Route::get('/customer/booking', [BookingController::class, 'create'])
+// Route::get('/customer/booking', [BookingController::class, 'create'])
+//     ->name('customer.booking');
+
+Route::get('/booking/{id}', [BookingController::class, 'booking'])
     ->name('customer.booking');
+
 
 Route::post('/booking', [BookingController::class, 'store'])
     ->name('booking.store');
