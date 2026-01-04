@@ -20,14 +20,17 @@
         <!-- <a href="#" class="btn btn-outline-dark btn-sm">View All</a> -->
     </div>
 
-    <div class="row g-4">
+    <div class="cust-movie-grid">
         @foreach ($movies as $movie)
 
 
-    <div class="col-md-4 col-lg-3">
-        <div class="card">
+    <!-- <div class="col-md-4 col-lg-3">
+        <div class="card"> -->
+        <div class="cust-movie-card">
             <img src="{{ asset('storage/' . $movie->image_path) }}" alt="{{ $movie->movie_title }}">
-            <div class="card-body">
+            <!-- <div class="card-body"> -->
+            <div class="cust-movie-body">
+
                 <h4>{{ $movie->movie_title }}</h4>
                 <small class="text-muted">
                 @php
@@ -44,7 +47,7 @@
                 </a>
             </div>
         </div>
-    </div>
+    
 @endforeach
 
     </div>

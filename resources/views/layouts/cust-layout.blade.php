@@ -96,7 +96,45 @@
             border-radius: 4px;
             font-size: 13px;
         }
+        .cust-movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 24px;
+        }
 
+        .cust-movie-card {
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .cust-movie-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 35px rgba(0,0,0,0.12);
+        }
+
+        .cust-movie-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .cust-movie-body {
+            padding: 14px 16px 18px;
+        }
+
+        .cust-movie-body h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .cust-movie-body small {
+            display: block;
+            margin-bottom: 12px;
+        }
 
 
     </style>
