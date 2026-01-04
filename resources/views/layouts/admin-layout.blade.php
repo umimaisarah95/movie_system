@@ -32,6 +32,15 @@
             color: #fff;    
         }
 
+        .btn-cancel{
+            background-color: #6b6b6bff;
+            color: #fff;
+        }
+        .btn-cancel:hover{
+            background-color: #8b8a8aff;
+            color: #fff;
+        }
+
         .cust-navbar {
             background-color: #5D4037;
         }

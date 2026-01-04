@@ -76,11 +76,16 @@
                     </div>
                 </div>
 
-                <!-- SUBMIT -->
+                
                 <div class="d-flex justify-content-end">
+
+                    <a href="{{ route('admin.index') }}" class="btn btn-secondary me-2 btn-cancel">
+                        Cancel
+                    </a>
                     <button type="submit" class="btn btn-primary px-4">
-                        Add New Movie
+                        Add Movie
                     </button>
+
                 </div>
 
             </form>

@@ -84,7 +84,7 @@
             Update Movie
         </button>
 
-        <a href="{{ route('admin.index') }}" class="btn btn-secondary ms-2">
+        <a href="{{ route('admin.index') }}" class="btn btn-secondary ms-2 btn-cancel">
             Cancel
         </a>
     </form>
