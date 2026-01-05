@@ -9,7 +9,7 @@
     <div class="card shadow-sm border-0 rounded-4">
         <div class="card-body p-4">
 
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('admin.showtimes.store') }}">
                 @csrf
 
                 <input type="hidden" name="movie_id" value="{{ $movie->movie_id }}">

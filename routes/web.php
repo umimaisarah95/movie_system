@@ -105,6 +105,9 @@ Route::get('/admin/movies/{id}/details', [MovieController::class, 'showDetails']
 Route::get('/admin/showtimes/create/{movie}', [ShowtimesController::class, 'create'])
     ->name('admin.showtimes');
 
+Route::post('/admin/showtimes', [ShowtimesController::class, 'store'])
+    ->name('admin.showtimes.store');
+
 // Route::post('/admin/showtimes', [ShowtimeController::class, 'store'])
 //     ->name('admin.showtimes.store');
 
