@@ -113,8 +113,11 @@ Route::get('/admin/showtimes/{movie}', [ShowtimesController::class, 'create'])
 Route::post('/admin/showtimes', [ShowtimesController::class, 'store'])
     ->name('admin.showtimes.store');
 
+// <<<<<<< HEAD
 
 
+// =======
+// >>>>>>> 7fef49d838c38504283522a0e01d0d75db8b396a
 // Route::post('/admin/showtimes', [ShowtimeController::class, 'store'])
 //     ->name('admin.showtimes.store');
 
