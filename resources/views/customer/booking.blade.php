@@ -42,43 +42,36 @@
                     <form method="POST" action="{{ route('booking.store') }}">
                         @csrf
 
-                        <input type="hidden" name="movie_id" value="{{ $movie->id }}">
-                        <input type="hidden" name="total" id="totalPrice" value="24">
+                        <input type="hidden" name="movie_id" value="{{ $movie->movie_id }}">
+                        <input type="hidden" name="total" id="totalPrice" value="0">
                         <input type="hidden" name="seats" id="selectedSeats">
 
                         <!-- DATE -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Date</label>
-                            <input type="date" name="date" class="form-control"required min="{{ $movie->promotion_start_date }}"
-                                max="{{ $movie->promotion_end_date }}" >
-
+                            <input 
+                                type="date"
+                                name="date"
+                                class="form-control"
+                                required
+                                min="{{ $movie->promotion_start_date }}"
+                                max="{{ $movie->promotion_end_date }}">
                         </div>
 
                         <!-- TIME -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Time</label>
-                            <select name="time" class="form-select" required>
+                            <select name="time" id="timeSelect" class="form-select" required>
                                 <option value="">-- Select Time --</option>
-
-                                @foreach ($showtimes as $showtime)
-                                    <option 
-                                        value="{{ $showtime->show_time }}"
-                                        data-date="{{ $showtime->show_date }}"
-                                    >
-                                        {{ \Carbon\Carbon::parse($showtime->show_time)->format('h:i A') }}
-                                    </option>
-                                @endforeach
                             </select>
-
                         </div>
 
                         <!-- SEATS -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Select Seats</label>
                             <div class="d-flex flex-wrap gap-2 seat-hall">
-                                <div class="screen-label">
-                                    SCREEN
-                                </div>
+                                <div class="screen-label">SCREEN</div>
+
                                 @foreach (['A', 'B', 'C', 'D', 'E'] as $row)
                                     <div class="d-flex flex-wrap gap-2 mb-2">
                                         @for ($i = 1; $i <= 10; $i++)
@@ -118,6 +111,11 @@
 
 </div>
 
+<!-- PASS SHOWTIMES TO JAVASCRIPT (NO LOGIC HERE) -->
+<script>
+    const showtimes = @json($showtimes);
+</script>
+
 <!-- SEAT SELECTION SCRIPT -->
 <script>
     const seatButtons = document.querySelectorAll('.seat-btn');
@@ -150,4 +148,26 @@
         });
     });
 </script>
+
+<!-- DATE → TIME FILTER SCRIPT -->
+<script>
+    const dateInput = document.querySelector('input[name="date"]');
+    const timeSelect = document.getElementById('timeSelect');
+
+    dateInput.addEventListener('change', function () {
+        const selectedDate = this.value;
+
+        timeSelect.innerHTML = '<option value="">-- Select Time --</option>';
+
+        showtimes
+            .filter(s => s.date === selectedDate)
+            .forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.time;
+                opt.textContent = s.label;
+                timeSelect.appendChild(opt);
+            });
+    });
+</script>
+
 @endsection

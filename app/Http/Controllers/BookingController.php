@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\booking;
 use App\Models\movie;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Showtime;
+
 
 class BookingController extends Controller
 {
@@ -24,7 +26,16 @@ class BookingController extends Controller
         $showtimes = $movie->showtimes()
             ->orderBy('show_date')
             ->orderBy('show_time')
-            ->get();
+            ->get()
+            ->map(function ($s) {
+             return [
+                'date'  => $s->show_date,   // MUST be Y-m-d
+                'time'  => $s->show_time,
+                'label' => date('h:i A', strtotime($s->show_time)),
+            ];
+        })
+        ->values();
+        // });
 
 
         return view('customer.booking', compact('movie', 'showtimes'));
@@ -43,6 +54,19 @@ class BookingController extends Controller
             'seat_num'    => 'required',
             'total_price'    => 'required|numeric',
         ]);
+
+        // Check if selected date + time really exists for this movie
+        $exists = Showtime::where('movie_id', $request->movie_id)
+            ->where('show_date', $request->date)
+            ->where('show_time', $request->time)
+            ->exists();
+
+        if (! $exists) {
+            return back()->withErrors([
+                'time' => 'Selected time is not available for the chosen date.',
+            ])->withInput();
+        }
+
 
         Booking::create([
             'user_id' => Auth::id(),

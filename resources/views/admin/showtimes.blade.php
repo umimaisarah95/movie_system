@@ -3,13 +3,20 @@
 @section('content')
 
 <div class="container my-5">
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
 
     <h3 class="fw-bold mb-4">Add Showtime</h3>
 
     <div class="card shadow-sm border-0 rounded-4">
         <div class="card-body p-4">
 
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('admin.showtimes.store') }}">
                 @csrf
 
                 <input type="hidden" name="movie_id" value="{{ $movie->movie_id }}">
@@ -49,7 +56,7 @@
                     <a href="{{ route('admin.movie.details', $movie->movie_id) }}" class="btn btn-cancel">
                         Cancel
                     </a>
-
+                    
                     <button type="submit" class="btn">
                         Add Showtime
                     </button>
@@ -59,6 +66,7 @@
 
         </div>
     </div>
+    
 
 </div>
 

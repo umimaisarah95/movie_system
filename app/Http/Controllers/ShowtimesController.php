@@ -35,7 +35,7 @@ class ShowtimesController extends Controller
         ]);
 
         return redirect()
-            ->route('admin.index')
+            ->route('admin.showtimes',$movie->movie_id)
             ->with('success', 'Showtime added successfully.');
     }
 }

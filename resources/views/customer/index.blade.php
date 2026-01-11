@@ -56,36 +56,6 @@
 </div> {{-- end row --}}
 
 <!-- TOP 5 MOVIES -->
-<div class="container my-5">
-    <h3 class="fw-bold mb-4">Top 5 Movies</h3>
-
-    <table class="table table-borderless align-middle">
-        <tbody>
-            @for ($i = 1; $i <= 5; $i++)
-            <tr class="border-bottom">
-                
-                <!-- RANK -->
-                <td class="fw-bold fs-4 text-warning" style="width: 80px;">
-                    {{ $i }}
-                </td>
-
-                <!-- MOVIE TITLE -->
-                <td class="fw-bold">
-                    Movie Title
-                </td>
-
-                <!-- ACTION -->
-                <td class="text-end" style="width: 150px;">
-                    <a href="{{ url('/booking') }}" class="btn  px-4">
-                        Book
-                    </a>
-                </td>
-
-            </tr>
-            @endfor
-        </tbody>
-    </table>
-</div>
 
 
 
