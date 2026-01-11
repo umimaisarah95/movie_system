@@ -3,6 +3,13 @@
 @section('title', 'History')
 
 @push('styles')
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 <style>
     body {
         background-color: #f5f5f5;

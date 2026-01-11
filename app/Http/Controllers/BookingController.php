@@ -48,11 +48,11 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'movie_id' => 'required|exists:movies,id',
-            'booking_date'     => 'required|date',
-            'booking_time'     => 'required',
-            'seat_num'    => 'required',
-            'total_price'    => 'required|numeric',
+            'movie_id' => 'required|exists:movies,movie_id',
+            'date'     => 'required|date',
+            'time'     => 'required',
+            'seats'    => 'required',
+            'total'    => 'required|numeric',
         ]);
 
         // Check if selected date + time really exists for this movie
@@ -68,17 +68,21 @@ class BookingController extends Controller
         }
 
 
-        Booking::create([
+        $booking = Booking::create([
             'user_id' => Auth::id(),
             'movie_id' => $request->movie_id,
-            'booking_date'     => $request->date,
-            'booking_time'     => $request->time,
-            'seat_num'    => $request->seats,
-            'total_price'    => $request->total,
-            'status'   => 'PAID',
+            'booking_date' => $request->date,
+            'booking_time' => $request->time,
+            'seat_num' => $request->seats,
+            'total_price' => $request->total,
+            'status' => 'PENDING',
         ]);
 
-        return redirect()->route('customer.index')
-            ->with('success', 'Booking confirmed!');
+        return redirect()
+            ->route('customer.payment', $booking->booking_id);
+
+        // return redirect()->route('customer.index')
+        // return redirect()->route('customer.payment', $booking)
+        //     ->with('success', 'Booking confirmed!');
     }
 }

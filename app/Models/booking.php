@@ -16,6 +16,7 @@ class booking extends Model
         'booking_date',
         'booking_time',
         'total_price',
+        'payment_status',
     ];
 
       public function user()

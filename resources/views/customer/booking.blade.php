@@ -98,9 +98,17 @@
                             </h6>
                         </div>
 
-                        <button type="submit" class="btn w-100 fw-bold">
+                        <form method="POST" action="{{ route('booking.store') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-success">
+                                Confirm Payment
+                            </button>
+                        </form>
+
+
+                        <!-- <button type="submit" class="btn w-100 fw-bold">
                             Confirm Booking
-                        </button>
+                        </button> -->
 
                     </form>
 

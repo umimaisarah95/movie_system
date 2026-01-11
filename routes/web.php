@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\AuthController;
 use App\Http\controllers\BookingController;
 use App\Http\controllers\ShowtimesController;
+use App\Http\controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,10 +71,16 @@ Route::post('/booking', [BookingController::class, 'store'])
 Route::get('/movies/{id}', [MovieController::class, 'show'])
     ->name('customer.details');
 
+Route::get('/payment/{booking}', [PaymentController::class, 'show'])
+    ->name('customer.payment');
+
+Route::post('/payment/confirm/{booking}', [PaymentController::class, 'confirm'])
+    ->name('customer.payment.confirm');
+
 
 
     
-//ADMIN ROUTES
+//-------------------------ADMIN ROUTES
 Route::get('/admin', [adminDashboardController::class, 'index'])->name('admin.index');
 
 Route::get('/addmovie', [adminDashboardController:: class, 'create'])->name('admin.movie_create'); 
