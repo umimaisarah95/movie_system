@@ -54,7 +54,7 @@ Route::get('/register', function () {
 // });
 Route::get('/history', [BookingController::class, 'history'])
     ->name('customer.history');
-    
+
 Route::get('/profile', function () {
     return view('customer.profile');
 });
@@ -101,10 +101,13 @@ Route::delete('/movies/{movie}', [adminDashboardController::class, 'destroy'])
         ->name('movie.destroy');
 
 Route::get('/admin/profile', function () {
-    
-
     return view('admin.adminProfile');
 })->name('admin.profile');
+
+Route::put('/admin/profile', [AuthController::class, 'updateProfile'])
+    ->name('admin.profile.update')
+    ->middleware('auth');
+
 
 Route::get('/admin/booking', [adminDashboardController::class, 'bookings'])
      ->name('admin.booking');

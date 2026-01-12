@@ -14,15 +14,23 @@ return new class extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->id('user_id');
+            // PRIMARY KEY
+            $table->id('profile_id');
+            // FOREIGN KEY → users.id
+            $table->unsignedBigInteger('user_id')->unique();
             $table->string('fullname');
-            $table->string('phone');
-            $table->string('email');
-            $table->enum('gender', ['Male', 'Female']);
-            $table->date('birthdate');
-            
+            $table->string('phone')->nullable();
+            $table->string('email')->unique();
+            $table->enum('gender', ['Male', 'Female'])->nullable();
+            $table->date('birthdate')->nullable();
 
             $table->timestamps();
+
+            // FK constraint
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
         });
     }
 
