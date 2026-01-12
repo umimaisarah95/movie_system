@@ -31,121 +31,63 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //CUSTOMER ROUTES
 
-// Route::get('/', function () {
-
-//     return view('customer.index');
-// });
-
-// Route::get('/login', function () {
-//     return view('auth.login');
-// });
-// Route::get('/customer', function () {
-//     return view('customer.index');
-// })->name('customer.index');
-
-Route::get('/customer', [movieController::class, 'home'])
-    ->name('customer.index');
+Route::get('/customer', [movieController::class, 'home'])->name('customer.index');
 
 Route::get('/register', function () {
-    return view('auth.register');
-});
-// Route::get('/history', function () {
-//     return view('customer.history');
-// });
+    return view('auth.register');});
+
 Route::get('/history', [BookingController::class, 'history']);
-    // ->name('customer.history');
 
 Route::get('/profile', function () {
-    return view('customer.profile');
-});
-// Route::get('/booking', function () {
-//     return view('customer.booking');
-// });
-// Route::get('/customer/booking', [BookingController::class, 'create'])
-//     ->name('customer.booking');
+    return view('customer.profile');});
 
-Route::get('/booking/{id}', [BookingController::class, 'booking'])
-    ->name('customer.booking');
+Route::get('/booking/{id}', [BookingController::class, 'booking']) ->name('customer.booking');
 
 
-Route::post('/booking', [BookingController::class, 'store'])
-    ->name('booking.store');
+Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
 
-Route::get('/movies/{id}', [MovieController::class, 'show'])
-    ->name('customer.details');
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name('customer.details');
 
-Route::get('/payment/{booking}', [PaymentController::class, 'show'])
-    ->name('customer.payment');
+Route::get('/payment/{booking}', [PaymentController::class, 'show'])->name('customer.payment');
 
-Route::post('/payment/confirm/{booking}', [PaymentController::class, 'confirm'])
-    ->name('customer.payment.confirm');
-
-
-
+Route::post('/payment/confirm/{booking}', [PaymentController::class, 'confirm'])->name('customer.payment.confirm');
     
 //-------------------------ADMIN ROUTES
 Route::get('/admin', [adminDashboardController::class, 'index'])->name('admin.index');
 
 Route::get('/addmovie', [adminDashboardController:: class, 'create'])->name('admin.movie_create'); 
 
-Route::post('/movie', [adminDashboardController::class, 'store'])
-        ->name('movie.store');
+Route::post('/movie', [adminDashboardController::class, 'store'])->name('movie.store');
 
-Route::get('/movies/edit/{movie}', [adminDashboardController::class, 'edit'])
-        ->name('movie.edit');
+Route::get('/movies/edit/{movie}', [adminDashboardController::class, 'edit'])->name('movie.edit');
 
-Route::put('/movies/{movie}', [adminDashboardController::class, 'update'])
-        ->name('movie.update');
+Route::put('/movies/{movie}', [adminDashboardController::class, 'update'])->name('movie.update');
 
-Route::delete('/movies/{movie}', [adminDashboardController::class, 'destroy'])
-        ->name('movie.destroy');
+Route::delete('/movies/{movie}', [adminDashboardController::class, 'destroy']) ->name('movie.destroy');
 
 Route::get('/admin/profile', function () {
     return view('admin.adminProfile');
 })->name('admin.profile');
 
-Route::put('/admin/profile', [AuthController::class, 'updateProfile'])
-    ->name('admin.profile.update')
+Route::put('/admin/profile', [AuthController::class, 'updateProfile'])->name('admin.profile.update')
     ->middleware('auth');
 
-Route::get('/admin/booking', [adminDashboardController::class, 'bookings'])
-     ->name('admin.booking');
+Route::get('/admin/booking', [adminDashboardController::class, 'bookings'])->name('admin.booking');
 
 Route::get('/admin/booking/{booking}/edit', 
-    [adminDashboardController::class, 'editBooking']
-)->name('admin.booking.edit');
+    [adminDashboardController::class, 'editBooking'])->name('admin.booking.edit');
 
 Route::put('/admin/booking/{booking}', 
-    [adminDashboardController::class, 'updateBooking']
-)->name('admin.booking.update');
+    [adminDashboardController::class, 'updateBooking'])->name('admin.booking.update');
 
 Route::delete('/admin/booking/{booking}', 
-    [adminDashboardController::class, 'deleteBooking']
-)->name('admin.booking.delete');
+    [adminDashboardController::class, 'deleteBooking'])->name('admin.booking.delete');
 
+Route::get('/admin/movies/{id}/details', [MovieController::class, 'showDetails'])->name('admin.movie.details');
 
-Route::get('/admin/movies/{id}/details', [MovieController::class, 'showDetails'])
-    ->name('admin.movie.details');
+Route::get('/admin/showtimes/{movie}', [ShowtimesController::class, 'create']) ->name('admin.showtimes');
 
-// Route::get('/admin/showtimes/create/{movie}', [ShowtimesController::class, 'create'])
-//     ->name('admin.showtimes.create');
-
-// Route::post('/admin/showtimes', [ShowtimesController::class, 'store'])
-//     ->name('admin.showtimes.store');
-Route::get('/admin/showtimes/{movie}', [ShowtimesController::class, 'create'])
-    ->name('admin.showtimes');
-
-Route::post('/admin/showtimes', [ShowtimesController::class, 'store'])
-    ->name('admin.showtimes.store');
-
-// <<<<<<< HEAD
-
-
-// =======
-// >>>>>>> 7fef49d838c38504283522a0e01d0d75db8b396a
-// Route::post('/admin/showtimes', [ShowtimeController::class, 'store'])
-//     ->name('admin.showtimes.store');
-
+Route::post('/admin/showtimes', [ShowtimesController::class, 'store'])->name('admin.showtimes.store');
 
 
     
