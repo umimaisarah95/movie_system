@@ -222,9 +222,9 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li>
+                                <!-- <li>
                                     <a class="dropdown-item" href="#">My Account</a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST">
                                         @csrf

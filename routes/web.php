@@ -108,9 +108,21 @@ Route::put('/admin/profile', [AuthController::class, 'updateProfile'])
     ->name('admin.profile.update')
     ->middleware('auth');
 
-
 Route::get('/admin/booking', [adminDashboardController::class, 'bookings'])
      ->name('admin.booking');
+
+Route::get('/admin/booking/{booking}/edit', 
+    [adminDashboardController::class, 'editBooking']
+)->name('admin.booking.edit');
+
+Route::put('/admin/booking/{booking}', 
+    [adminDashboardController::class, 'updateBooking']
+)->name('admin.booking.update');
+
+Route::delete('/admin/booking/{booking}', 
+    [adminDashboardController::class, 'deleteBooking']
+)->name('admin.booking.delete');
+
 
 Route::get('/admin/movies/{id}/details', [MovieController::class, 'showDetails'])
     ->name('admin.movie.details');

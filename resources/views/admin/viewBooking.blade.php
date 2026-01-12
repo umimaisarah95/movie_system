@@ -11,7 +11,7 @@
     </div>
     @endif
     <h2 class="mb-4">Booking List</h2>
-    <table class="table table-bordered table-striped table-secondary">
+    <table class="table table-bordered table-white">
         <thead class="table-dark">
             <tr>
                 <th>Booking ID</th>
@@ -22,7 +22,8 @@
                 <th>Seat Number</th>
                 <th>Booking Date</th>
                 <th>Booking Time</th>
-                <th width="180">Action</th>
+                <th>Payment Status</th>
+                <th width="100">Action</th>
             </tr>
         </thead>
 
@@ -38,8 +39,20 @@
                 <td>{{ $booking->booking_date }}</td>
                 <td>{{ $booking->booking_time }}</td>
                 <td>
-                    <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="#" method="POST" style="display:inline-block;">
+                    @if ($booking->payment_status === 'PAID')
+                        <span class="badge bg-success">PAID</span>
+                    @elseif ($booking->payment_status === 'PENDING')
+                        <span class="badge bg-danger">PENDING</span>
+                    @else
+                        <span class="badge bg-secondary">
+                            {{ $booking->payment_status }}
+                        </span>
+                    @endif
+                </td>
+
+                <td>
+                    <!-- <a href="{{ route('admin.booking.edit', $booking->booking_id) }}" class="btn btn-warning btn-sm">Edit</a> -->
+                    <form action="{{ route('admin.booking.delete', $booking->booking_id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger btn-sm"

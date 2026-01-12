@@ -20,12 +20,13 @@ class adminDashboardController extends Controller
     }
 
     public function bookings()
-{
-    // Eager load user and movie to avoid N+1 query problem
-    $bookings = Booking::with(['user', 'movie'])->get();
+    {
+        $bookings = Booking::with(['user', 'movie'])
+        ->orderBy('booking_date', 'desc')
+        ->get();
 
-    return view('admin.viewBooking', compact('bookings'));
-}
+        return view('admin.viewBooking', compact('bookings'));
+    }
 
 
     /**
@@ -76,13 +77,6 @@ class adminDashboardController extends Controller
         return redirect()->route('admin.index')->with('success', 'Movie added successfully.');
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
@@ -90,9 +84,6 @@ class adminDashboardController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit(movie $movie)
     {
@@ -143,13 +134,42 @@ class adminDashboardController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy(movie $movie)
     {
         $movie->delete();
         return redirect()->route('admin.index')->with('success', 'Movie deleted successfully.');
     }
+
+    public function editBooking(Booking $booking)
+    {
+        return view('admin.editBooking', compact('booking'));
+    }
+
+    public function updateBooking(Request $request, Booking $booking)
+    {
+        $request->validate([
+            'payment_status' => 'required|in:PAID,PENDING',
+        ]);
+
+        $booking->update([
+            'payment_status' => $request->payment_status,
+        ]);
+
+        return redirect()
+            ->route('admin.booking')
+            ->with('success', 'Booking updated successfully.');
+    }
+
+    public function deleteBooking(Booking $booking)
+    {
+        $booking->delete();
+
+        return redirect()
+            ->route('admin.booking')
+            ->with('success', 'Booking deleted successfully.');
+    }
+
+
+
 }
