@@ -5,7 +5,7 @@
 @push('styles')
 
 @if (session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success m-3">
         {{ session('success') }}
     </div>
 @endif
@@ -37,7 +37,7 @@
 
     <div class="row g-4 justify-content-center">
 
-        @for ($i = 1; $i <= 3; $i++)
+        @forelse ($bookings as $booking)
         <div class="col-md-6 col-lg-4">
 
             <!-- TICKET CARD -->
@@ -46,8 +46,12 @@
                 <div class="card-body">
 
                     <!-- MOVIE TITLE -->
-                    <h5 class="fw-bold mb-1">Movie Name</h5>
-                    <small class="text-muted">P12</small>
+                    <h5 class="fw-bold mb-1">
+                        {{ $booking->movie->movie_title ?? 'Unknown Movie' }}
+                    </h5>
+                    <small class="text-muted">
+                        Booking #{{ $booking->booking_id }}
+                    </small>
 
                     <!-- DIVIDER -->
                     <div class="ticket-divider"></div>
@@ -55,59 +59,59 @@
                     <!-- CONFIRMATION ID -->
                     <p class="text-center mb-4">
                         <small class="text-muted">Confirmation ID</small><br>
-                        <span class="fw-bold fs-5">#4778{{ $i }}</span>
+                        <span class="fw-bold fs-5">
+                            #{{ $booking->booking_id }}
+                        </span>
                     </p>
-
-                    <!-- CINEMA -->
-                    <div class="mb-3">
-                        <small class="text-muted">Cinema</small>
-                        <div class="fw-bold">Kuala Lumpur – MyTown</div>
-                    </div>
 
                     <!-- DATE & TIME -->
                     <div class="row mb-3">
                         <div class="col">
                             <small class="text-muted">Date</small>
-                            <div class="fw-bold">Thu 25 Dec</div>
+                            <div class="fw-bold">
+                                {{ \Carbon\Carbon::parse($booking->booking_date)->format('D d M Y') }}
+                            </div>
                         </div>
                         <div class="col">
                             <small class="text-muted">Time</small>
-                            <div class="fw-bold">3:25 PM</div>
+                            <div class="fw-bold">
+                                {{ \Carbon\Carbon::parse($booking->booking_time)->format('h:i A') }}
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- HALL -->
-                    <div class="mb-3">
-                        <small class="text-muted">Hall</small>
-                        <div class="fw-bold">HALL 1</div>
-                    </div>
-
-                    <!-- TICKET TYPE -->
-                    <div class="mb-3">
-                        <small class="text-muted">Ticket Type</small>
-                        <div class="fw-bold">Adult-MBR : 2</div>
                     </div>
 
                     <!-- SEATS -->
                     <div class="mb-3">
                         <small class="text-muted">Seat(s)</small>
-                        <div class="fw-bold">A10, A11</div>
+                        <div class="fw-bold">
+                            {{ $booking->seat_num }}
+                        </div>
                     </div>
 
-                    <!-- E-COMBO -->
+                    <!-- TOTAL -->
                     <div class="mb-4">
-                        <small class="text-muted">e-Combo</small>
-                        <div class="fw-bold">N/A</div>
+                        <small class="text-muted">Total Paid</small>
+                        <div class="fw-bold">
+                            RM {{ number_format($booking->total_price, 2) }}
+                        </div>
                     </div>
 
                     <!-- STATUS -->
-                    <span class="badge bg-success w-100 py-2">PAID</span>
+                    <span class="badge 
+                        {{ $booking->payment_status === 'PAID' ? 'bg-success' : 'bg-warning text-dark' }}
+                        w-100 py-2">
+                        {{ $booking->payment_status }}
+                    </span>
 
                 </div>
             </div>
 
         </div>
-        @endfor
+        @empty
+        <div class="col-12 text-center text-muted">
+            No booking history found.
+        </div>
+        @endforelse
 
     </div>
 

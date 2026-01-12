@@ -85,4 +85,15 @@ class BookingController extends Controller
         // return redirect()->route('customer.payment', $booking)
         //     ->with('success', 'Booking confirmed!');
     }
+
+    public function history()
+    {
+        $bookings = Booking::with('movie')
+            ->where('user_id', Auth::id())
+            ->where('payment_status', 'PAID')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('customer.history', compact('bookings'));
+    }
 }

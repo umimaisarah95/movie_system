@@ -49,9 +49,12 @@ Route::get('/customer', [movieController::class, 'home'])
 Route::get('/register', function () {
     return view('auth.register');
 });
-Route::get('/history', function () {
-    return view('customer.history');
-});
+// Route::get('/history', function () {
+//     return view('customer.history');
+// });
+Route::get('/history', [BookingController::class, 'history'])
+    ->name('customer.history');
+    
 Route::get('/profile', function () {
     return view('customer.profile');
 });

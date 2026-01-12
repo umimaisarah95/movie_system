@@ -20,9 +20,11 @@
                         <div class="rounded-circle bg-secondary text-white d-inline-flex 
                                     align-items-center justify-content-center mb-3"
                              style="width: 90px; height: 90px; font-size: 32px;">
-                            A
+                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                         </div>
-                        <h5 class="fw-bold mb-0">Ahmad Hafiy</h5>
+                        <h5 class="fw-bold mb-0">
+                            {{ Auth::user()->name }}
+                        </h5>
                         <small class="text-muted">Customer</small>
                     </div>
 
@@ -31,33 +33,67 @@
                     <!-- PROFILE FORM -->
                     <form>
 
-                        <!-- NAME -->
+                        <!-- FULL NAME -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Full Name</label>
-                            <input type="text" class="form-control" value="Ahmad Hafiy">
+                            <input type="text"
+                                   class="form-control"
+                                   value="{{ Auth::user()->name }}"
+                                   readonly>
                         </div>
 
                         <!-- EMAIL -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Email</label>
-                            <input type="email" class="form-control" value="hafiy@example.com">
+                            <input type="email"
+                                   class="form-control"
+                                   value="{{ Auth::user()->email }}"
+                                   readonly>
                         </div>
 
                         <!-- PHONE -->
                         <div class="mb-3">
                             <label class="form-label fw-bold">Phone Number</label>
-                            <input type="text" class="form-control" value="012-3456789">
+                            <input type="text"
+                                   class="form-control"
+                                   value="{{ Auth::user()->phone ?? '-' }}"
+                                   readonly>
+                        </div>
+
+                        <!-- GENDER -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Gender</label>
+                            <input type="text"
+                                   class="form-control"
+                                   value="{{ Auth::user()->gender ? ucfirst(Auth::user()->gender) : '-' }}"
+                                   readonly>
+                        </div>
+
+                        <!-- BIRTHDATE -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Birthdate</label>
+                            <input type="text"
+                                   class="form-control"
+                                   value="{{ Auth::user()->birthdate 
+                                        ? \Carbon\Carbon::parse(Auth::user()->birthdate)->format('d M Y') 
+                                        : '-' }}"
+                                   readonly>
                         </div>
 
                         <!-- PASSWORD -->
                         <div class="mb-4">
                             <label class="form-label fw-bold">Password</label>
-                            <input type="password" class="form-control" placeholder="********">
+                            <input type="password"
+                                   class="form-control"
+                                   value="********"
+                                   readonly>
                         </div>
 
                         <!-- ACTION -->
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-warning fw-bold px-4">
+                            <button type="button"
+                                    class="btn btn-warning fw-bold px-4"
+                                    disabled>
                                 Update Profile
                             </button>
                         </div>
