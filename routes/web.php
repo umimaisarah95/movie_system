@@ -52,8 +52,8 @@ Route::get('/register', function () {
 // Route::get('/history', function () {
 //     return view('customer.history');
 // });
-Route::get('/history', [BookingController::class, 'history'])
-    ->name('customer.history');
+Route::get('/history', [BookingController::class, 'history']);
+    // ->name('customer.history');
 
 Route::get('/profile', function () {
     return view('customer.profile');

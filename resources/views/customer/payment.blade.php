@@ -19,9 +19,13 @@
             </p>
 
             <p class="text-muted mt-3">
-                This is a <strong>demo payment</strong>.  
-                No real money will be charged.
+                <strong>Scan QR to Pay</strong>
             </p>
+
+            <img src="{{ asset('images/qr-payment.png') }}" 
+                alt="QR Payment"
+                class="img-fluid mx-auto d-block"
+                style="max-width: 220px;">
 
             <form method="POST" action="{{ route('customer.payment.confirm', $booking->booking_id) }}">
                 @csrf
